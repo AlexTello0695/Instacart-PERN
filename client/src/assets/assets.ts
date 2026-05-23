@@ -32,7 +32,7 @@ export const categoriesData = [
 ];
 
 export const heroSectionData = {
-    description: "Fresh, organic groceries delivered from local farms to your doorstep. Quality you can taste, convenience you deserve.",
+    description: "Productos frescos y orgánicos, entregados directamente de granjas locales a tu puerta. Calidad que se nota, comodidad que te mereces.",
     hero_image: hero_bg,
     hero_features: [
         { icon: TruckIcon, title: "Free Delivery", desc: "Orders over $20" },
