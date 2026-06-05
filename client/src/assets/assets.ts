@@ -19,26 +19,26 @@ export const assets = {
 };
 
 export const categoriesData = [
-    { slug: "fruits-vegetables", name: "Fruits & Vegetables", image: fruits_vegetables },
-    { slug: "personal-care", name: "Personal Care", image: personal_care },
-    { slug: "pantry-staples", name: "Pantry Staples", image: pantry_staples },
-    { slug: "bakery", name: "Bakery", image: bakery },
-    { slug: "beverages", name: "Beverages", image: drinks },
-    { slug: "meat-seafood", name: "Meat & Seafood", image: meat_seafood },
-    { slug: "snacks", name: "Snacks", image: snacks },
-    { slug: "frozen-foods", name: "Frozen Foods", image: frozen_foods },
-    { slug: "baby-care", name: "Baby Care", image: baby_care },
-    { slug: "dairy-eggs", name: "Dairy & Eggs", image: dairy_eggs },
+    { slug: "fruits-vegetables", name: "Frutas y Verduras", image: fruits_vegetables },
+    { slug: "personal-care", name: "Cuidado Personal", image: personal_care },
+    { slug: "pantry-staples", name: "Despensa Básica", image: pantry_staples },
+    { slug: "bakery", name: "Panadería", image: bakery },
+    { slug: "beverages", name: "Bebidas", image: drinks },
+    { slug: "meat-seafood", name: "Carnes y Mariscos", image: meat_seafood },
+    { slug: "snacks", name: "Botana", image: snacks },
+    { slug: "frozen-foods", name: "Comida Congelada", image: frozen_foods },
+    { slug: "baby-care", name: "Cuidado de Bebé", image: baby_care },
+    { slug: "dairy-eggs", name: "Lácteos y Huevos", image: dairy_eggs },
 ];
 
 export const heroSectionData = {
     description: "Productos frescos y orgánicos, entregados directamente de granjas locales a tu puerta. Calidad que se nota, comodidad que te mereces.",
     hero_image: hero_bg,
     hero_features: [
-        { icon: TruckIcon, title: "Free Delivery", desc: "Orders over $20" },
-        { icon: LeafIcon, title: "100% Organic", desc: "Certified products" },
-        { icon: ClockIcon, title: "Same Day", desc: "Express delivery" },
-        { icon: ShieldCheckIcon, title: "Secure Pay", desc: "Safe checkout" },
+        { icon: TruckIcon, title: "Entrega gratuita", desc: "Pedidos mayores a $20" },
+        { icon: LeafIcon, title: "100% orgánicos", desc: "Productos certificados" },
+        { icon: ClockIcon, title: "Entrega el mismo día", desc: "Entrega express" },
+        { icon: ShieldCheckIcon, title: "Pago seguro", desc: "Compra protegida" },
     ],
 };
 
