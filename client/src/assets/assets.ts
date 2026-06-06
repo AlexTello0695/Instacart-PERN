@@ -19,7 +19,7 @@ export const assets = {
 };
 
 export const categoriesData = [
-    { slug: "fruits-vegetables", name: "Frutas y Verduras", image: fruits_vegetables },
+    { slug: "frutas-verduras", name: "Frutas y Verduras", image: fruits_vegetables },
     { slug: "personal-care", name: "Cuidado Personal", image: personal_care },
     { slug: "pantry-staples", name: "Despensa Básica", image: pantry_staples },
     { slug: "bakery", name: "Panadería", image: bakery },
