@@ -45,14 +45,14 @@ export const heroSectionData = {
 export const deliveryPartnerLoginImage = "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=200";
 
 export const appPromoBannerData = {
-    title: "Get fresh groceries in minutes",
-    description: "Download the Instacart app for exclusive deals, real-time tracking, and the freshest selection delivered right to your door.",
+    title: "Obtén alimentos frescos en minutos.",
+    description: "Descarga la aplicación de Instacart para acceder a ofertas exclusivas, seguimiento en tiempo real y la selección de productos más frescos entregados directamente en tu puerta.",
 };
 
 export const footerData = {
     brand: {
         name: "Instacart",
-        description: "Bringing fresh, organic groceries straight from local farms to your doorstep. Nourish your home with Earth's finest.",
+        description: "Reciba productos frescos y orgánicos directamente de las granjas locales en la puerta de su casa. Nutra su hogar con lo mejor de la tierra.",
         socials: [
             { icon: SiFacebook, link: "#" },
             { icon: SiX, link: "#" },
@@ -62,36 +62,36 @@ export const footerData = {
 
     sections: [
         {
-            title: "Quick Links",
+            title: "Accesos Rápidos",
             links: [
-                { label: "All Products", to: "/products" },
-                { label: "Flash Deals", to: "/deals" },
-                { label: "Track Order", to: "/orders" },
-                { label: "Delivery Partner", to: "/delivery" },
+                { label: "Todos los Productos", to: "/products" },
+                { label: "Ofertas", to: "/deals" },
+                { label: "Localización del paquete", to: "/orders" },
+                { label: "Socio de Entrega", to: "/delivery" },
             ],
         },
         {
-            title: "Customer Service",
+            title: "Atención al Cliente",
             links: [
-                { label: "My Account", to: "#" },
-                { label: "Order History", to: "#" },
-                { label: "Addresses", to: "#" },
-                { label: "Help Center", href: "#" },
+                { label: "Mi Cuenta", to: "#" },
+                { label: "Historial de Pedidos", to: "#" },
+                { label: "Direcciones", to: "#" },
+                { label: "Centro de Ayuda", href: "#" },
             ],
         },
     ],
 
     contact: [
-        { icon: MapPinIcon, text: "123 Green Valley Rd, Portland" },
+        { icon: MapPinIcon, text: "123 Calle de Ejemplo, Ejemplo" },
         { icon: PhoneIcon, text: "+1 (111) 123-4567" },
         { icon: MailIcon, text: "hello@example.com" },
     ],
 
     bottom: {
-        copyright: "© 2026 Greatstack. All rights reserved.",
+        copyright: "© 2026 AT. Todos los Derechos Reservados.",
         links: [
-            { label: "Privacy Policy", href: "#" },
-            { label: "Terms of Service", href: "#" },
+            { label: "Política de Privacidad", href: "#" },
+            { label: "Términos de Servicio", href: "#" },
         ],
     },
 };
