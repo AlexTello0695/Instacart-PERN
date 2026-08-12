@@ -19,7 +19,7 @@ export const assets = {
 };
 
 export const categoriesData = [
-    { slug: "frutas-verduras", name: "Frutas y Verduras", image: fruits_vegetables },
+    { slug: "fruits-vegetables", name: "Frutas y Verduras", image: fruits_vegetables },
     { slug: "personal-care", name: "Cuidado Personal", image: personal_care },
     { slug: "pantry-staples", name: "Despensa Básica", image: pantry_staples },
     { slug: "bakery", name: "Panadería", image: bakery },
@@ -88,7 +88,7 @@ export const footerData = {
     ],
 
     bottom: {
-        copyright: "© 2026 AT. Todos los Derechos Reservados.",
+        copyright: "© 2026 Instacart. Todos los Derechos Reservados.",
         links: [
             { label: "Política de Privacidad", href: "#" },
             { label: "Términos de Servicio", href: "#" },
