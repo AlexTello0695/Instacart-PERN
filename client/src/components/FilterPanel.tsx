@@ -18,6 +18,37 @@ const FilterPanel = ({categories, category, minPrice, maxPrice, updateFilter, cl
             </div>
         </div>
         
+        {/* {Rango de Precios} */}
+        <div>
+            <h3 className="text-sm font-semibold text-app-green mb-3">Rango de precio</h3>
+            <div className="flex items-center gap-2">
+                <input 
+                    type="number"
+                    placeholder="Min"
+                    value={minPrice}
+                    onChange={(e) => updateFilter('minPrice', e.target.value)}
+                    className="w-full px-3 py-2 text-sm bg-white rounded-lg border not-focus:border-app-border" 
+                />
+
+                <span>-</span>
+
+                <input 
+                    type="number"
+                    placeholder="Max"
+                    value={maxPrice}
+                    onChange={(e) => updateFilter('maxPrice', e.target.value)}
+                    className="w-full px-3 py-2 text-sm bg-white rounded-lg border not-focus:border-app-border" 
+                />
+            </div>
+        </div>
+
+        {hasFilters && (
+            <button
+                onClick={clearFilters}
+                className="w-full py-2 text-sm text-app-error hover:bg-red-50 rounded-lg transition-colors font-medium">
+                Borrar todos los filtros
+            </button>
+        )}
     </div>
   )
 }
