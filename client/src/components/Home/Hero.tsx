@@ -12,7 +12,7 @@ const Hero = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
             <div className="max-w-xl xl:pl-10">
                 <span className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-semibold text-orange-300 bg-orange-300/10 rounded-full mb-5">
-                    <LeafIcon className="size-3"/> Productos frescos de la granja y orgánicos.
+                    <LeafIcon className="size-3"/> Productos frescos y orgánicos.
                 </span>
                 <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-5">
                     Nutre tu hogar con <span className="text-orange-300">lo mejor de la Tierra.</span>

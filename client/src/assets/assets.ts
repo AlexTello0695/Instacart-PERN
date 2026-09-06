@@ -32,7 +32,7 @@ export const categoriesData = [
 ];
 
 export const heroSectionData = {
-    description: "Productos frescos y orgánicos, entregados directamente de granjas locales a tu puerta. Calidad que se nota, comodidad que te mereces.",
+    description: "Productos frescos y orgánicos, entregados directamente a tu puerta. Calidad que se nota, comodidad que te mereces.",
     hero_image: hero_bg,
     hero_features: [
         { icon: TruckIcon, title: "Entrega gratuita", desc: "Pedidos mayores a $20" },
@@ -97,12 +97,12 @@ export const footerData = {
 };
 
 export const statusColors: Record<string, string> = {
-    Placed: "bg-blue-100 text-blue-700",
-    Confirmed: "bg-indigo-100 text-indigo-700",
-    Packed: "bg-purple-100 text-purple-700",
-    "Out for Delivery": "bg-app-orange/10 text-app-orange",
-    Delivered: "bg-green-100 text-green-700",
-    Cancelled: "bg-red-100 text-red-700",
+    Realizado: "bg-blue-100 text-blue-700",
+    Confirmado: "bg-indigo-100 text-indigo-700",
+    Empacado: "bg-purple-100 text-purple-700",
+    "En ruta": "bg-app-orange/10 text-app-orange",
+    Entregado: "bg-green-100 text-green-700",
+    Cancelado: "bg-red-100 text-red-700",
 };
 
 export const iconsForLeafpad = {
@@ -635,10 +635,10 @@ export const dummyAdminDashboardData = {
     recentOrders: [
         {
             shippingAddress: {
-                label: "Home",
-                address: "New Market Road ",
-                city: "New York ",
-                state: "NY",
+                label: "Casa",
+                address: "Calle 12 ",
+                city: "Iztacalco",
+                state: "CDMX",
                 zip: "876543",
                 lat: 40.7128,
                 lng: -74.006,
@@ -714,7 +714,7 @@ export const dummyAdminDashboardData = {
             ],
             deliveryPartner: {
                 _id: "69bbfc3866db7c6cdea47ede",
-                name: "Rahul",
+                name: "Randy",
                 phone: "987654321",
             },
             deliveryOtp: "",
@@ -786,6 +786,33 @@ export const dummyDashboardOrdersData = [
                 _id: "69d366617ed7e54198d67dad",
             },
             {
+                product: "69c22613ae75a98c7cd13b31",
+                name: "7 Up 1.5L",
+                image: "https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/qt1ypzsoqni12ghf2ryp.png",
+                price: 70,
+                quantity: 3,
+                unit: "1.5L",
+                _id: "69d366617ed7e54198d67dad"
+            },
+            {
+                product: "69c22613ae75a98c7cd13b2f",
+                name: "Coca-Cola 1.5L",
+                image: "https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/eljxcdud6fduwfim5rdx.png",
+                price: 75,
+                quantity: 2,
+                unit: "1.5L",
+                _id: "69d366617ed7e54198d67dad"
+            },
+            {
+                product: "69c22613ae75a98c7cd13b26",
+                name: "Apple 1 kg",
+                image: "https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/pjt1y6xdo46tluemhf0o.png",
+                price: 100,
+                quantity: 1,
+                unit: "1kg",
+                _id: "69d366617ed7e54198d67dad"
+            },
+            {
                 product: "69c22613ae75a98c7cd13b36",
                 name: "Barley 1kg",
                 image: "https://raw.githubusercontent.com/avinashdm/gs-images/main/greencart/spb5sgy8g24rned9nwog.png",
@@ -799,8 +826,8 @@ export const dummyDashboardOrdersData = [
         subtotal: 230,
         deliveryFee: 0,
         tax: 18.4,
-        total: 248.4,
-        status: "Delivered",
+        total: 540.5,
+        status: "Entregado",
         statusHistory: [
             { status: "Placed", note: "Order placed successfully", _id: "69d366617ed7e54198d67daf", timestamp: "2026-04-06T07:53:05.769Z" },
             { status: "Assigned", note: "Assigned to Rahul", _id: "69d366ab7ed7e54198d67dbe", timestamp: "2026-04-06T07:54:19.796Z" },
@@ -829,7 +856,7 @@ export const dummyDashboardOrdersData = [
         deliveryFee: 0,
         tax: 18.4,
         total: 248.4,
-        status: "Out for Delivery",
+        status: "Cancelado",
         statusHistory: [
             { status: "Placed", note: "Order placed successfully", _id: "69d366617ed7e54198d67daf", timestamp: "2026-04-06T07:53:05.769Z" },
             { status: "Assigned", note: "Assigned to Rahul", _id: "69d366ab7ed7e54198d67dbe", timestamp: "2026-04-06T07:54:19.796Z" },

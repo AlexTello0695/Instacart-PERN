@@ -19,12 +19,12 @@ const Banner = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex-center gap-6">
                     <div className="flex-center gap-2">
                         <TruckIcon className="size-4 shrink-0" />
-                        <span className="font-medium">Envío gratuito en pedidos superiores a 20 dólares.</span>
+                        <span className="font-medium">Envío gratuito en pedidos superiores a 200 pesos.</span>
                     </div>
                     <span className="hidden sm:inline text-white/40">|</span>
                     <div className="hidden sm:flex items-center gap-2">
                         <ZapIcon className="size-3.5 fill-yellow-400 text-yellow-400 shrink-0"/>
-                        <span>Productos frescos de la granja entregados diariamente</span>
+                        <span>Productos frescos entregados diariamente</span>
                     </div>
                 </div>
                 <button onClick={dismissBanner} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-white/10 rounded-full">
