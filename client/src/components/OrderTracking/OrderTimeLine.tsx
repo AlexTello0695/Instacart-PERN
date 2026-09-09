@@ -2,21 +2,21 @@ import { ClockIcon, CheckIcon, TruckIcon, PackageIcon } from "lucide-react";
 
 export default function OrderTimeLine({ order }: { order: any }) {
 
-    const allStatuses = ["Placed", "Confirmed", "Assigned", "Packed", "Out for Delivery", "Delivered"];
+    const allStatuses = ["Realizado", "Confirmado", "Asignado", "Empacado", "En Ruta", "Entregado"];
     const currentIdx = allStatuses.indexOf(order.status);
 
     const statusIcons: any = {
-        Placed: ClockIcon,
-        Confirmed: CheckIcon,
-        Assigned: TruckIcon,
-        Packed: PackageIcon,
-        "Out for Delivery": TruckIcon,
-        Delivered: CheckIcon,
+        Realizado: ClockIcon,
+        Confirmado: CheckIcon,
+        Asignado: TruckIcon,
+        Empacado: PackageIcon,
+        "En Ruta": TruckIcon,
+        Entregado: CheckIcon,
     };
 
     return (
         <div className="bg-white rounded-2xl p-6">
-            <h2 className="text-lg font-semibold text-app-green mb-6">Delivery Progress</h2>
+            <h2 className="text-lg font-semibold text-app-green mb-6">Segumiento del Pedido</h2>
             <div className="space-y-0">
                 {allStatuses.map((status, i) => {
                     const Icon = statusIcons[status] || PackageIcon;
