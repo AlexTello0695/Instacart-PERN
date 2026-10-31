@@ -67,6 +67,8 @@ export function AuthProvider({children} : {children:ReactNode}){
         setToken(null)
         localStorage.removeItem("auth_token")
         localStorage.removeItem("auth_user")
+        toast.success("Sesión cerrada correctamente")
+        navigate('/login')
     }
 
     const updateUser = (userData: Partial<User>) => {

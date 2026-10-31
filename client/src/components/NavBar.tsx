@@ -2,6 +2,7 @@ import { ArrowUpRightIcon, BadgePercentIcon, BikeIcon, ChevronDownIcon, LogOutIc
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
 
@@ -10,6 +11,8 @@ const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const navigate = useNavigate()
+
+  const { logout } = useAuth();
 
   const handleSearch = (e: React.SubmitEvent)=>{
     e.preventDefault()
@@ -21,7 +24,7 @@ const NavBar = () => {
 
   const handleLogout = () =>{
     setUserMenuOpen(false)
-    navigate("/")
+    logout()
   }
 
   return (
