@@ -28,9 +28,9 @@ const App = () => {
     <Toaster position='top-right' toastOptions={{duration: 3000, style: {background: "#1B3022", color: "#FFF", borderRadius:"12px", fontSize: "14px"}}}/>
 
     <Routes>
-      {/* Auth pages - No Navbar/Footer */}
+      {/* Paginas de autenticación - Sin Navbar/Footer */}
       <Route path='login' element={<Login />}/>
-      {/* Main pages - With Navbar/Footer */}
+      {/* Paginas principales - Con Navbar/Footer */}
       <Route path='/' element={<AppLayout />}>
         <Route index element={<Home />}/>
         <Route path="products" element={<Products />}/>

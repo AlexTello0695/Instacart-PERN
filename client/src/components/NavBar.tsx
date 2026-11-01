@@ -6,13 +6,12 @@ import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
 
-  const user: any = {name: "Alex", email: "alext@ejemplo.com", isAdmin: "true"}
   const {cartCount, setIsCartOpen} = useCart()
   const [searchQuery, setSearchQuery] = useState("")
   const [userMenuOpen, setUserMenuOpen] = useState(false)
   const navigate = useNavigate()
 
-  const { logout } = useAuth();
+  const {user, logout } = useAuth();
 
   const handleSearch = (e: React.SubmitEvent)=>{
     e.preventDefault()
@@ -23,8 +22,9 @@ const NavBar = () => {
   }
 
   const handleLogout = () =>{
-    setUserMenuOpen(false)
     logout()
+    setUserMenuOpen(false)
+    navigate("/")
   }
 
   return (
