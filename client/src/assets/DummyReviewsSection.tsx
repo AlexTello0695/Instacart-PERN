@@ -2,27 +2,27 @@ import { useMemo } from "react";
 import type { Product } from "../types";
 import { StarIcon, ThumbsUpIcon } from "lucide-react";
 
-/* ─── Dummy Reviews Section ─── */
+/* ─── Sección de Reseñas Dummy ─── */
 const REVIEWERS = [
-    { name: "Ananya S.", avatar: "AS" },
-    { name: "Rahul M.", avatar: "RM" },
-    { name: "Priya K.", avatar: "PK" },
-    { name: "Vikram J.", avatar: "VJ" },
-    { name: "Meera D.", avatar: "MD" },
-    { name: "Arjun R.", avatar: "AR" },
-    { name: "Sneha T.", avatar: "ST" },
-    { name: "Karan P.", avatar: "KP" },
+    { name: "Ana Sofía M.", avatar: "AM" },
+    { name: "Ricardo L.", avatar: "RL" },
+    { name: "Patricia H.", avatar: "PH" },
+    { name: "Víctor G.", avatar: "VG" },
+    { name: "María F.", avatar: "MF" },
+    { name: "Alejandro R.", avatar: "AR" },
+    { name: "Sofía T.", avatar: "ST" },
+    { name: "Carlos P.", avatar: "CP" },
 ];
 
 const COMMENTS = [
-    "Absolutely love this product! Fresh and great quality. Will definitely order again.",
-    "Good value for the price. Packaging was neat and delivery was on time.",
-    "Quality is decent but I expected it to be a bit fresher. Still a solid buy overall.",
-    "This has become a staple in my kitchen now. Highly recommended for everyone!",
-    "Exceeded my expectations. The taste and freshness were top-notch. Five stars!",
-    "Pretty good! Not the absolute best I've had, but definitely worth the price.",
-    "Arrived in perfect condition. Very satisfied with the purchase, ordering more soon.",
-    "Great product, my family loved it. The organic quality really shows in the taste.",
+    "¡Me encanta este producto! Fresco y de gran calidad. Definitivamente volveré a pedir.",
+    "Buena relación calidad-precio. El empaque estaba impecable y la entrega fue puntual.",
+    "La calidad es decente, pero esperaba que estuviera un poco más fresco. Aun así, es una buena compra.",
+    "Ya se volvió un básico en mi cocina. ¡Altamente recomendado para todos!",
+    "Superó mis expectativas. El sabor y la frescura son de primera. ¡Cinco estrellas!",
+    "¡Está bastante bueno! No es el mejor que he probado, pero definitivamente vale la pena por el precio.",
+    "Llegó en perfectas condiciones. Muy satisfecha con la compra, pronto pediré más.",
+    "Excelente producto, a mi familia le encantó. La calidad orgánica realmente se nota en el sabor.",
 ];
 
 function seededRandom(seed: string) {
@@ -33,7 +33,7 @@ function seededRandom(seed: string) {
 
 export default function DummyReviewsSection({ product }: { product: Product }) {
     const reviews = useMemo(() => {
-        const rng = seededRandom(product._id);
+        const rng = seededRandom(product.id);
         const count = Math.min(product.reviewCount, 6);
         const daysAgo = [3, 7, 14, 21, 35, 48];
         return Array.from({ length: count }, (_, i) => {
@@ -44,14 +44,14 @@ export default function DummyReviewsSection({ product }: { product: Product }) {
                 id: i,
                 ...r,
                 rating,
-                date: d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+                date: d.toLocaleDateString("es-MX", { day: "numeric", month: "short", year: "numeric" }),
                 comment: COMMENTS[(Math.floor(rng() * COMMENTS.length) + i) % COMMENTS.length],
                 helpful: Math.floor(rng() * 20) + 1,
             };
         });
     }, [product]);
 
-    // Rating breakdown
+    // Desglose de calificaciones
     const breakdown = useMemo(() => {
         const counts = [0, 0, 0, 0, 0];
         reviews.forEach((r) => counts[r.rating - 1]++);
@@ -62,12 +62,12 @@ export default function DummyReviewsSection({ product }: { product: Product }) {
 
     return (
         <section className="mt-10 ">
-            <h2 className="text-2xl font-semibold text-app-green mb-6">Customer Reviews</h2>
+            <h2 className="text-2xl font-semibold text-app-green mb-6">Reseñas de Clientes</h2>
 
             <div className="bg-white/50 rounded-2xl p-6 md:p-8">
-                {/* Summary row */}
+                {/* Fila de resumen */}
                 <div className="flex flex-col md:flex-row gap-8 mb-8 pb-8 border-b border-app-border">
-                    {/* Average */}
+                    {/* Promedio */}
                     <div className="flex-center flex-col md:min-w-[160px] lg:w-1/3">
                         <span className="text-5xl font-semibold text-app-green">{product.rating}</span>
                         <div className="flex items-center gap-0.5 mt-2 mb-1">
@@ -75,10 +75,10 @@ export default function DummyReviewsSection({ product }: { product: Product }) {
                                 <StarIcon key={s} className={`size-4 ${s <= Math.round(product.rating) ? "text-app-warning fill-app-warning" : "text-app-border"}`} />
                             ))}
                         </div>
-                        <span className="text-sm text-zinc-600">{product.reviewCount} reviews</span>
+                        <span className="text-sm text-zinc-600">{product.reviewCount} reseñas</span>
                     </div>
 
-                    {/* Breakdown bars */}
+                    {/* Barras de desglose */}
                     <div className="flex-1 space-y-2">
                         {breakdown.map((count, i) => (
                             <div key={i} className="flex items-center gap-3">
@@ -92,7 +92,7 @@ export default function DummyReviewsSection({ product }: { product: Product }) {
                     </div>
                 </div>
 
-                {/* Individual reviews */}
+                {/* Reseñas individuales */}
                 <div className="space-y-6">
                     {reviews.map((review) => (
                         <div key={review.id} className="flex gap-4">
@@ -112,7 +112,7 @@ export default function DummyReviewsSection({ product }: { product: Product }) {
                                 </div>
                                 <p className="text-sm text-zinc-600 leading-relaxed">{review.comment}</p>
                                 <button className="mt-2 flex items-center gap-1.5 text-xs text-zinc-600 hover:text-app-green transition-colors">
-                                    <ThumbsUpIcon className="size-3.5" /> Helpful ({review.helpful})
+                                    <ThumbsUpIcon className="size-3.5" /> Útil ({review.helpful})
                                 </button>
                             </div>
                         </div>
