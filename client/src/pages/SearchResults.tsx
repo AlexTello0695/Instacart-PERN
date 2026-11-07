@@ -17,7 +17,7 @@ const SearchResults = () => {
   useEffect(() => {
     if(!query) return;
     setLoading(true)
-    api.get(`/products?search=${encodeURIComponent(query)}`).then((res) => setProducts(res.data.products)).catch((error: any) => toast.error(error.response.data.message || error?.message)).finally(() => setLoading(false))
+    api.get(`/products?search=${encodeURIComponent(query)}`).then((res) => setProducts(res.data.products)).catch((error: any) => {toast.error(error.response?.data?.message || error.message)}).finally(() => setLoading(false))
   }, [query])
   return (
     <div className="min-h-screen bg-app-cream">

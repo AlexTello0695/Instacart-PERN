@@ -146,11 +146,11 @@ const OrderTracking = () => {
                   <span>{order?.deliveryFee === 0 ? "Gratis" : `${currency}${order?.deliveryFee.toFixed(2)}`}</span>
                 </div>
 
-                {/* {Calculo de Impuestos} */}
+                {/* {Calculo de Impuestos}
                 <div className="flex justify-between">
                   <span className="text-app-text-light">Impuestos</span>
                   <span>{currency}{order?.tax.toFixed(2)}</span>
-                </div>
+                </div> */}
 
                 {/* {Calculo de Total} */}
                 <div className="flex justify-between pt-2 border-t border-app-border font-semibold text-app-green">

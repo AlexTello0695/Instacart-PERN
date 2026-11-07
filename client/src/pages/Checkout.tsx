@@ -1,20 +1,23 @@
 import { useNavigate } from "react-router-dom"
 import { useCart } from "../context/CartContext";
-import { dummyAddressData } from "../assets/assets";
+
 import { useState } from "react";
 import type { Address } from "../types";
 import { ArrowLeft, CheckIcon, ChevronRightIcon, CreditCardIcon, MapPinIcon } from "lucide-react";
 import CheckoutAddress from "../components/Checkout/CheckoutAddress";
 import CheckoutPayment from "../components/Checkout/CheckoutPayment";
 import CheckoutReview from "../components/Checkout/CheckoutReview";
+import api from "../config/api";
+import toast from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 
 const Checkout = () => {
 
   const navigate = useNavigate()
   const currency = import.meta.env.VITE_CURRENCY_SYMBOL || '$';
 
-  const {items, cartTotal} = useCart()
-  const {user} = {user: {addresses: dummyAddressData}}
+  const {items, cartTotal, clearCart} = useCart()
+  const {user} = useAuth()
 
   const [step, setStep] = useState("address")
   const [loading, setLoading] = useState(false)
@@ -34,8 +37,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState('card')
 
   const deliveryFee = cartTotal > 200 ? 0 : 40;
-  const tax = cartTotal * 0.16;
-  const total = cartTotal + deliveryFee + tax;
+  const total = cartTotal + deliveryFee;
 
   const steps: {key: string; label: string; icon: typeof MapPinIcon}[] = [
     {key: "address", label: "Dirección", icon: MapPinIcon},
@@ -45,7 +47,31 @@ const Checkout = () => {
 
   const handlePlaceOrder = async () => {
     setLoading(true)
-    navigate("/orders")
+    try {
+      const orderData = {
+        items: items.map((item) => ({
+          product: item.product.id,
+          quantity: item.quantity,
+        })),
+        shippingAddress : address,
+        paymentMethod
+      }
+      const { data } = await api.post('/orders', orderData)
+      console.log(data)
+
+      if (data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      clearCart()
+      toast.success("¡Pedido realizado existosamente!");
+      navigate(`/orders/${data.order.id}`)
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || error?.message)
+    }finally{
+      setLoading(false);
+      scrollTo(0,0);
+    }
   }
   
   // {Rellenar la dirección a partir de la dirección predeterminada del usuario}
@@ -135,13 +161,8 @@ const Checkout = () => {
                 <span>{deliveryFee === 0 ? <span className="text-app-success">Gratis</span> : `${currency}${deliveryFee.toFixed(2)}`}</span>
               </div>
 
-              <div className="flex justify-between">
-                <span className="text-app-text-light">Impuestos</span>
-                <span>{currency}{tax.toFixed(2)}</span>
-              </div>
-
               <div className="flex justify-between pt-3 border-t border-app-border text-base font-semibold">
-                <span >Impuestos</span>
+                <span >Total</span>
                 <span className="text-app-green">{currency}{total.toFixed(2)}</span>
               </div>
             </div>

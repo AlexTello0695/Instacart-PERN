@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react"
 import type { Address } from "../types"
-import { dummyAddressData } from "../assets/assets"
 import { MapPinIcon, PlusIcon } from "lucide-react"
 import Loading from "../components/Loading"
 import AddressCard from "../components/AddressCard"
 import AddressForm from "../components/AddressForm"
+import { useAuth } from "../context/AuthContext"
+import api from "../config/api"
+import toast from "react-hot-toast"
 
 const Addresses = () => {
+
+  const {updateUser} = useAuth() 
 
   const [addresses, setAddresses] = useState<Address[]>([])
   const [loading, setLoading] = useState(true)
@@ -26,8 +30,61 @@ const Addresses = () => {
     setEditingId(null)
   }
 
+  const getLocation = (retries = 3): Promise<{lat: number; lng: number}> => {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error("Servicio de geolocalización no compatible"))
+        return;
+      }
+
+      const attemp = () => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            })
+          },
+          (error: any) => {
+            if (retries > 0) {
+              retries--;
+              setTimeout(attemp, 1000)
+            } else {
+              reject(new Error(error.message || "No se pudo obtener la ubicación tras varios intentos."))
+            }
+          }, 
+          {
+            enableHighAccuracy: false,
+            timeout: 15000,
+            maximumAge: 60000,
+          }
+        )
+      };
+      attemp()
+    })
+  }
+
   const handleSubmit = async (e:React.SubmitEvent) => {
     e.preventDefault()
+    try {
+      const coords = await getLocation()
+      const payload = {...form, ...coords}
+
+      if (editingId) {
+        const { data } = await api.put(`/addresses/${editingId}`, payload);
+        setAddresses(data.addresses)
+        updateUser({addresses: data.addresses})
+        toast.success("¡Dirección actualizada con éxito!")
+      } else {
+        const { data } = await api.post(`/addresses/`, payload);
+        setAddresses(data.addresses)
+        updateUser({addresses: data.addresses})
+        toast.success("¡Dirección agregada con éxito!")
+      }
+      resetForm()
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || error.message || "Fallido")
+    }
   }
 
   const onEditHandler = (add: Address) => {
@@ -42,8 +99,13 @@ const Addresses = () => {
   }
 
   useEffect(() => {
-    setAddresses(dummyAddressData)
-    setTimeout(() => setLoading(false),1000)
+    api.get('/addresses').then(({ data }) => {
+      setAddresses(data.addresses)
+    }).catch((error: any) => {
+      toast.error(error.response?.data?.message || error?.message)
+    }).finally(() => {
+      setLoading(false)
+    })
   }, [])
   return (
     <div className="min-h-screen bg-app-cream">

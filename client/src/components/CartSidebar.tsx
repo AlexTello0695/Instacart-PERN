@@ -2,6 +2,10 @@ import { useNavigate } from "react-router-dom"
 import { useCart } from "../context/CartContext"
 import { ArrowRightIcon, MinusIcon, PlusIcon, ShoppingBagIcon, Trash2Icon, XIcon } from "lucide-react"
 
+// 🔧 Configuración de envío (fácil de ajustar en el futuro)
+const FREE_SHIPPING_THRESHOLD = 200;
+const DELIVERY_FEE = 49;
+
 const CartSidebar = () => {
 
   const currency = import.meta.env.VITE_CURRENCY_SYMBOL || "$"
@@ -12,8 +16,11 @@ const CartSidebar = () => {
 
   if (!isCartOpen) return null
 
-  const deliveryFee = cartTotal > 20 ? 0 : 1.99;
-  const grandTotal = cartTotal + deliveryFee
+  // 💰 Cálculos de envío
+  const hasFreeShipping = cartTotal >= FREE_SHIPPING_THRESHOLD;
+  const deliveryFee = hasFreeShipping ? 0 : DELIVERY_FEE;
+  const grandTotal = cartTotal + deliveryFee;
+  const amountToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - cartTotal);
 
   return (
     <>
@@ -95,10 +102,33 @@ const CartSidebar = () => {
 
               <div className="flex justify-between text-sm">
                 <span className="text-app-text-light">Envío</span>
-                <span className="font-medium">{deliveryFee === 0 ? <span className="text-app-success">Gratis</span> : `${currency}${deliveryFee.toFixed(2)}`}</span>
+                <span className="font-medium">
+                  {hasFreeShipping ? (
+                    <span className="text-app-success font-semibold">¡Gratis!</span>
+                  ) : (
+                    `${currency}${deliveryFee.toFixed(2)}`
+                  )}
+                </span>
               </div>
 
-              {deliveryFee > 0 && <p className="text-xs text-app-text-light text-center">¡Envío gratuito en pedidos mayores a {currency}20!</p>}
+              {/* 🎯 Banner motivador: envío gratis o cuánto falta */}
+              {hasFreeShipping ? (
+                <div className="text-xs text-app-success bg-app-success/10 p-2.5 rounded-lg text-center font-medium">
+                  🎉 ¡Felicidades! Tu pedido incluye envío gratuito
+                </div>
+              ) : (
+                <div className="text-xs text-app-orange bg-app-orange/10 p-2.5 rounded-lg text-center">
+                  {amountToFreeShipping <= 50 ? (
+                    <span className="font-semibold">
+                      🔥 ¡Agrega {currency}{amountToFreeShipping.toFixed(2)} más y obtén envío GRATIS!
+                    </span>
+                  ) : (
+                    <span>
+                      Envío gratuito en pedidos de {currency}{FREE_SHIPPING_THRESHOLD} o más
+                    </span>
+                  )}
+                </div>
+              )}
 
               <div className="flex justify-between text-base font-semibold border-t border-app-border pt-3">
                 <span>Total</span>
